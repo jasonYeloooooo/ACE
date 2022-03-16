@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        System.out.println("hello group project");
 
     }
 }
