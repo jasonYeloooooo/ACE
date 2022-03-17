@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
+                System.out.print("branch test");
             }
         });
     }
