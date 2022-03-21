@@ -7,6 +7,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+// connors branch
+
 public class MainActivity extends AppCompatActivity {
     private Button signinBtn;
     private Button registerBtn;
