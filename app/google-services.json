@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "652271987983",
+    "firebase_url": "https://ace-project-7334b-default-rtdb.firebaseio.com",
+    "project_id": "ace-project-7334b",
+    "storage_bucket": "ace-project-7334b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652271987983:android:cb60b72949c29df2ce627a",
+        "android_client_info": {
+          "package_name": "com.example.ace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652271987983-sut2lkfm5opaik8m15rfehlupgjb0j2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6CChhEdgQMJhGxgxb_smpeCgWx2s3uzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652271987983-sut2lkfm5opaik8m15rfehlupgjb0j2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
