@@ -6,9 +6,23 @@
          android:layout_height="match_parent"
          tools:context=".Register"
          >
-         <EditText
 
-             android:id="@+id/account_input"
+        <EditText
+
+            android:id="@+id/register_email"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter email"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            />
+
+        <EditText
+
+             android:id="@+id/register_username"
              android:gravity="center"
              android:layout_marginLeft="15dp"
              android:layout_marginRight="15dp"
@@ -16,12 +30,13 @@
              android:layout_height="wrap_content"
              android:hint="Enter user name"
              android:layout_centerVertical="true"
+             android:layout_below="@id/register_email"
              android:textSize="20sp"
              />
 
+
          <EditText
-             android:layout_marginTop="20dp"
-             android:id="@+id/password_input"
+             android:id="@+id/register_password"
              android:gravity="center"
              android:layout_marginLeft="15dp"
              android:layout_marginRight="15dp"
@@ -29,17 +44,18 @@
              android:layout_height="wrap_content"
              android:hint="Enter password"
              android:inputType="textPassword"
-             android:layout_below="@id/account_input"
+             android:layout_below="@id/register_username"
              android:textSize="20sp"/>
 
+
          <Button
-             android:id="@+id/btn_enroll"
+             android:id="@+id/btn_register"
              android:layout_marginTop="20dp"
              android:textSize="20sp"
             android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:text="register"
-             android:layout_below="@id/password_input"
+             android:layout_below="@id/register_password"
              android:layout_centerHorizontal="true"
              android:textColor="@color/white"
               />
