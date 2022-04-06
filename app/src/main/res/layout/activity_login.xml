@@ -9,28 +9,26 @@
 
 
     <ImageView
-        android:id="@+id/HHCLogo"
+        android:id="@+id/hhc_logo"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_centerVertical="false"
+        android:layout_height="300dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
-        android:contentDescription="Hope holistic care logo"
-        android:visibility="visible"
-        app:srcCompat="@mipmap/HHC_Vertical" />
+        app:srcCompat="@mipmap/hhc_logo_vertical" />
 
     <EditText
         android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:gravity="center"
         android:hint="Email address"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        tools:layout_below="@id/hhc_logo" />
 
     <EditText
         android:id="@+id/login_password"
@@ -51,7 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_password"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
         android:text="Login"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -62,10 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_button"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
         android:background="#0e000000"
-        android:text="forget_pass"
-        android:textSize="20sp"
 
-        />
+        android:text="forget_pass"
+        android:textSize="20sp" />
      </RelativeLayout>
