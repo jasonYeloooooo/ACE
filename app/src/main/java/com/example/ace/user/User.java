@@ -2,39 +2,53 @@ package com.example.ace.user;
 
 public class User {
 
-    private String uid;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
+    private String phoneNum;
+    private String dateOfBirth;
+    private String contactEmail;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public User(String username, String password, String email) {
-        this.username = username;
+    public User( String firstName, String lastName, String password, String email, String phoneNum, String dateOfBirth, String contactEmail) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.phoneNum = phoneNum;
+        this.dateOfBirth = dateOfBirth;
+        this.contactEmail = contactEmail;
     }
 
-    public String getUid() {
-        return uid;
+    @Override
+    public String toString() {
+        return "User{" +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", contactEmail='" + contactEmail + '\'' +
+                '}';
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getUsername() {
-        return username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -45,13 +59,35 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid='" + uid + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 }

@@ -7,56 +7,134 @@
          tools:context=".Register"
          >
 
-        <EditText
-
-            android:id="@+id/register_email"
-            android:gravity="center"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter email"
-            android:layout_centerVertical="true"
-            android:textSize="20sp"
-            />
-
-        <EditText
-
-             android:id="@+id/register_username"
-             android:gravity="center"
-             android:layout_marginLeft="15dp"
-             android:layout_marginRight="15dp"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Enter user name"
-             android:layout_centerVertical="true"
-             android:layout_below="@id/register_email"
-             android:textSize="20sp"
-             />
+    <CheckBox
+        android:id="@+id/checkbox_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="50sp"
+        android:text="User"
+        android:textSize="20dp" />
 
 
-         <EditText
-             android:id="@+id/register_password"
-             android:gravity="center"
-             android:layout_marginLeft="15dp"
-             android:layout_marginRight="15dp"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:hint="Enter password"
-             android:inputType="textPassword"
-             android:layout_below="@id/register_username"
-             android:textSize="20sp"/>
+    <CheckBox
+        android:id="@+id/checkbox_stuff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkbox_user"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="20dp"
+        android:text="stuff"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkbox_stuff"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:text="Confirm" />
+
+    <EditText
+
+        android:id="@+id/register_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter email"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+    <EditText
+
+         android:id="@+id/register_firstName"
+         android:gravity="center"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="Enter first name"
+         android:layout_centerVertical="true"
+         android:layout_below="@id/register_email"
+         android:textSize="20sp"
+        android:visibility="invisible"
+         />
+    <EditText
+
+        android:id="@+id/register_LastName"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Last name"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/register_firstName"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        />
+    <EditText
+
+        android:id="@+id/register_phone"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your phone number"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/register_LastName"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        />
 
 
-         <Button
-             android:id="@+id/btn_register"
-             android:layout_marginTop="20dp"
-             android:textSize="20sp"
-            android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="register"
-             android:layout_below="@id/register_password"
-             android:layout_centerHorizontal="true"
-             android:textColor="@color/white"
-              />
-     </RelativeLayout>
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_phone"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+    <EditText
+        android:id="@+id/register_dateOfBirth"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Date fo Birth"
+        android:layout_below="@id/register_password"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+    <EditText
+        android:id="@+id/register_contactEmail"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Contact Email"
+        android:layout_below="@id/register_dateOfBirth"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_contactEmail"
+        android:text="register"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
