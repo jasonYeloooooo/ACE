@@ -105,6 +105,19 @@
         android:inputType="textPassword"
         android:textSize="20sp"
         android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/stuff_level"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="EnterAccessLevel"
+        android:layout_below="@id/register_password"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+
     <EditText
         android:id="@+id/register_dateOfBirth"
         android:gravity="center"
