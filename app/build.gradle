@@ -4,11 +4,22 @@ plugins {
 
 android {
     compileSdk 32
+    buildToolsVersion "29.0.2"
 
-    defaultConfig {
+/*    defaultConfig {
         applicationId "com.example.ace"
         minSdk 30
         targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }*/
+
+    defaultConfig {
+        applicationId "com.bae.dialogflowbot"
+        minSdkVersion 23
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -38,7 +49,17 @@ android {
         exclude 'META-INF/INDEX.LIST'
         exclude("META-INF/*.kotlin_module")
     }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
 }
+
+
 
 dependencies {
 
@@ -48,6 +69,16 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
 
     //dialogFlow
     implementation 'com.google.cloud:google-cloud-dialogflow:2.1.0'
