@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements BotReply {
         QueryInput input = QueryInput.newBuilder()
                 .setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
 
-        new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
+        new SendMessageInBg(this, sessionName, sessionsClient, input);//*//*.execute()*//*;
 
     }
 

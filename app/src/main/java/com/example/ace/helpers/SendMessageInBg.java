@@ -1,7 +1,14 @@
 package com.example.ace.helpers;
 
-import android.os.AsyncTask;
+//import android.os.AsyncTask;
 import android.util.Log;
+
+/*import com.example.ace.interfaces.BotReply;
+import com.google.cloud.dialogflow.v2.DetectIntentRequest;
+import com.google.cloud.dialogflow.v2.DetectIntentResponse;
+import com.google.cloud.dialogflow.v2.QueryInput;
+import com.google.cloud.dialogflow.v2.SessionName;
+import com.google.cloud.dialogflow.v2.SessionsClient;*/
 
 import com.example.ace.interfaces.BotReply;
 import com.google.cloud.dialogflow.v2.DetectIntentRequest;
@@ -10,8 +17,11 @@ import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 
-public class SendMessageInBg extends AsyncTask<Void, Void, DetectIntentResponse> {
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+
+public class SendMessageInBg /*extends AsyncTask<Void, Void, DetectIntentResponse>*/ {
 
     private SessionName session;
     private SessionsClient sessionsClient;
@@ -25,10 +35,13 @@ public class SendMessageInBg extends AsyncTask<Void, Void, DetectIntentResponse>
         this.session = session;
         this.sessionsClient = sessionsClient;
         this.queryInput = queryInput;
+
+        onPostExecute(DetectIntentResponse());
+
     }
 
-    @Override
-    protected DetectIntentResponse doInBackground(Void... voids) {
+    //@Override
+    protected DetectIntentResponse DetectIntentResponse() /*doInBackground(Void... voids)*/ {
         try {
             DetectIntentRequest detectIntentRequest =
                     DetectIntentRequest.newBuilder()
@@ -43,8 +56,8 @@ public class SendMessageInBg extends AsyncTask<Void, Void, DetectIntentResponse>
         return null;
     }
 
-    @Override
-    protected void onPostExecute(DetectIntentResponse response) {
+    //@Override
+    protected void onPostExecute(DetectIntentResponse  response) {
         //handle return response here
         botReply.callback(response);
     }
