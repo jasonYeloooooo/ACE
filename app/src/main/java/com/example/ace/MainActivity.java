@@ -16,8 +16,6 @@ import com.example.ace.adapters.ChatAdapter;
 import com.example.ace.helpers.SendMessageInBg;
 import com.example.ace.interfaces.BotReply;
 import com.example.ace.models.Message;
-
-
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -28,6 +26,8 @@ import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.SessionsSettings;
 import com.google.cloud.dialogflow.v2.TextInput;
 import com.google.common.collect.Lists;
+
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
