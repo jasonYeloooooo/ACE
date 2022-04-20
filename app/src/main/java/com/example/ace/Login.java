@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
 
                                     // if sign-in is successful
                                     // intent to home activity
-                                    Intent intent=new Intent(Login.this,firstPage.class);
+                                    Intent intent=new Intent(Login.this,SecondActivity.class);
                                     startActivity(intent);
                                 }
 
