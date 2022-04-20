@@ -5,10 +5,8 @@ import android.os.Bundle;
 //import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -18,8 +16,8 @@ import com.example.ace.adapters.ChatAdapter;
 import com.example.ace.helpers.SendMessageInBg;
 import com.example.ace.interfaces.BotReply;
 import com.example.ace.models.Message;
-import com.example.ace.adapters.ChatAdapter;
-import com.example.ace.interfaces.BotReply;
+
+
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -35,11 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-
-import androidx.appcompat.app.AppCompatActivity;
 
 
 // connors branch
@@ -60,32 +53,6 @@ public class MainActivity extends AppCompatActivity implements BotReply {
     private  String uuid = UUID.randomUUID().toString();
     private String TAG = "mainactivity";
 
-  /*  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //click the Login button, jump to the login page
-        signinBtn = findViewById(R.id.signInBtn);
-        signinBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
-            }
-        });
-
-        //click the register button to re
-        registerBtn = findViewById(R.id.registerBtn);
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, Register.class);
-                startActivity(intent);
-                System.out.print("branch test");
-            }
-        });
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
