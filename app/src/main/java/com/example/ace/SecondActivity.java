@@ -3,6 +3,7 @@ package com.example.ace;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 //import android.os.Message;
@@ -31,12 +32,17 @@ import com.example.ace.models.Message;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
+import com.google.cloud.dialogflow.v2.DetectIntentRequest;
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
+import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.SessionsSettings;
+import com.google.cloud.dialogflow.v2.StreamingRecognitionResult;
 import com.google.cloud.dialogflow.v2.TextInput;
+import com.google.cloud.dialogflow.v2.OutputAudioConfig;
+import com.google.cloud.dialogflow.v2.OutputAudioEncoding;
 import com.google.common.collect.Lists;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -45,11 +51,13 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
+import com.google.common.io.ByteStreams;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.protobuf.ByteString;
 
 
 // connors branch
@@ -130,6 +138,20 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 micButton.setImageResource(R.drawable.ic_mic_black_off);
                 ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 editMessage.setText(data.get(0));
+                String message = editMessage.getText().toString();
+                if (!message.isEmpty()){
+                    messageList.add(new Message(message,false));
+                    editMessage.setText("");
+                    sendMessageToBot(message);
+                    Objects.requireNonNull(chatView.getAdapter()).notifyDataSetChanged();
+                    Objects.requireNonNull(chatView.getLayoutManager())
+                            .scrollToPosition(messageList.size()-1);
+                }else{
+                    Toast.makeText(SecondActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
+                }
+
+                speechRecognizer.startListening(speechRecognizerIntent);
+
             }
 
             @Override
@@ -157,7 +179,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             }
         });
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
+     /*   btnSend.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 String message = editMessage.getText().toString();
                 if (!message.isEmpty()){
@@ -171,7 +193,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     Toast.makeText(SecondActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         setUpBot();
 
@@ -199,10 +221,9 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     }
 
     private void sendMessageToBot(String message) {
-        QueryInput input = QueryInput.newBuilder()
-                .setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
+        QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
 
-        new SendMessageInBg(this, sessionName, sessionsClient, input);//*//*.execute()*//*;
+        new SendMessageInBg(this, sessionName, sessionsClient, input);
 
     }
 
@@ -210,6 +231,13 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     public void callback(DetectIntentResponse returnResponse) {
         if(returnResponse != null){
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
+
+            QueryResult queryResult = returnResponse.getQueryResult();
+
+
+
+
+
             if(!botReply.isEmpty()){
                 messageList.add(new Message(botReply, true));
                 chatAdapter.notifyDataSetChanged();

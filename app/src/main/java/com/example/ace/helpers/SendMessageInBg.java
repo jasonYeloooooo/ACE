@@ -13,6 +13,8 @@ import com.google.cloud.dialogflow.v2.SessionsClient;*/
 import com.example.ace.interfaces.BotReply;
 import com.google.cloud.dialogflow.v2.DetectIntentRequest;
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
+import com.google.cloud.dialogflow.v2.OutputAudioConfig;
+import com.google.cloud.dialogflow.v2.OutputAudioEncoding;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
@@ -43,12 +45,25 @@ public class SendMessageInBg /*extends AsyncTask<Void, Void, DetectIntentRespons
     //@Override
     protected DetectIntentResponse DetectIntentResponse() /*doInBackground(Void... voids)*/ {
         try {
+
+
+            // Audio output speech to text
+            OutputAudioEncoding audioEncoding = OutputAudioEncoding.OUTPUT_AUDIO_ENCODING_LINEAR_16;
+            int sampleRateHertz = 16000;
+
+            OutputAudioConfig outputAudioConfig = OutputAudioConfig.newBuilder()
+                    .setAudioEncoding(audioEncoding).setSampleRateHertz(sampleRateHertz).build();
+
+
             DetectIntentRequest detectIntentRequest =
                     DetectIntentRequest.newBuilder()
                             .setSession(session.toString())
                             .setQueryInput(queryInput)
+                            .setOutputAudioConfig(outputAudioConfig)
                             .build();
+
             return sessionsClient.detectIntent(detectIntentRequest);
+
         } catch (Exception e) {
             Log.d(TAG, "doInBackground: " + e.getMessage());
             e.printStackTrace();
