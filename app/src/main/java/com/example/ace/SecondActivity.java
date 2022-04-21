@@ -197,6 +197,8 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
 
         setUpBot();
 
+        speechRecognizer.startListening(speechRecognizerIntent);
+
     }
 
     private void setUpBot(){
@@ -214,7 +216,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
 
             Log.d(TAG, "projectId: " + projectId);
 
-
         }catch (Exception e){
             Log.d(TAG, "setUpBot: " + e.getMessage());
         }
@@ -231,11 +232,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     public void callback(DetectIntentResponse returnResponse) {
         if(returnResponse != null){
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
-
-            QueryResult queryResult = returnResponse.getQueryResult();
-
-
-
 
 
             if(!botReply.isEmpty()){
