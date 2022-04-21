@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -32,18 +33,14 @@ import com.example.ace.models.Message;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
-import com.google.cloud.dialogflow.v2.DetectIntentRequest;
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
-import com.google.cloud.dialogflow.v2.QueryResult;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.SessionsSettings;
-import com.google.cloud.dialogflow.v2.StreamingRecognitionResult;
 import com.google.cloud.dialogflow.v2.TextInput;
-import com.google.cloud.dialogflow.v2.OutputAudioConfig;
-import com.google.cloud.dialogflow.v2.OutputAudioEncoding;
 import com.google.common.collect.Lists;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +48,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.google.common.io.ByteStreams;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.protobuf.ByteString;
+
 
 
 // connors branch
@@ -68,6 +59,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     List<Message> messageList = new ArrayList<>();
     EditText editMessage;
     ImageButton btnSend;
+    TextToSpeech textToSpeech;
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -91,6 +83,16 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         chatAdapter = new ChatAdapter(messageList, this);
         chatView.setAdapter(chatAdapter);
 
+
+        textToSpeech = new TextToSpeech(this,
+                new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if(status==TextToSpeech.SUCCESS){
+                            int language = textToSpeech.setLanguage(Locale.ENGLISH);
+                        }
+                    }
+                });
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             checkPermission();
@@ -233,6 +235,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         if(returnResponse != null){
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
 
+            textToSpeech.speak(botReply, textToSpeech.QUEUE_FLUSH,null);
 
             if(!botReply.isEmpty()){
                 messageList.add(new Message(botReply, true));
