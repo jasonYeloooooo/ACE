@@ -48,11 +48,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
-
-
-
-// connors branch
-
 public class SecondActivity extends AppCompatActivity implements BotReply {
     RecyclerView chatView;
     ChatAdapter chatAdapter;
@@ -181,7 +176,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             }
         });
 
-     /*   btnSend.setOnClickListener(new View.OnClickListener() {
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 String message = editMessage.getText().toString();
                 if (!message.isEmpty()){
@@ -195,7 +190,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     Toast.makeText(SecondActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
+        });
 
         setUpBot();
 
