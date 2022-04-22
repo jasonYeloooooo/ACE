@@ -25,6 +25,12 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="323dp"
+            android:layout_height="233dp"
+            app:srcCompat="@drawable/hhc_300dpi" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -56,14 +62,13 @@
             <Button
 
                 android:id="@+id/signInBtn"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
                 android:text="Login"
-                android:textSize="20sp"
                 android:textColor="@color/white"
-                />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -76,14 +81,13 @@
 
             <Button
                 android:id="@+id/registerBtn"
-                android:layout_marginTop="50dp"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
                 android:text="Register"
                 android:textColor="@color/white"
-                />
+                android:textSize="20sp" />
         </LinearLayout>
 
 

@@ -54,6 +54,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     EditText editMessage;
     ImageButton btnSend;
     TextToSpeech textToSpeech;
+    ImageView btnBack,btnChinese,btnEnglish;
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -77,6 +78,36 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         chatView.setAdapter(chatAdapter);
         micButton = findViewById(R.id.imageBtn2);
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        btnBack = findViewById(R.id.ivBack);
+        btnChinese = findViewById(R.id.ivChinese);
+        btnEnglish = findViewById(R.id.ivEnglish);
+
+        //touch function on btn Back
+        btnBack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Intent intent=new Intent(SecondActivity.this, MainActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        //change the language (not done)
+        btnChinese.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Toast.makeText(SecondActivity.this,"change to chinese",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+        //change to EN (not done)
+        btnEnglish.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Toast.makeText(SecondActivity.this,"change to English",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
         //tts initial
         textToSpeech = new TextToSpeech(this,
