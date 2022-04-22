@@ -6,15 +6,13 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-//import android.os.Message;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-
+import android.widget.EditText;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -193,7 +191,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         });
 
         setUpBot();
-
         speechRecognizer.startListening(speechRecognizerIntent);
 
     }
@@ -220,19 +217,15 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
 
     private void sendMessageToBot(String message) {
         QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
-
-        new SendMessageInBg(this, sessionName, sessionsClient, input);
-
+        new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
     }
 
     @Override
     public void callback(DetectIntentResponse returnResponse) {
         if(returnResponse != null){
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
-
-            textToSpeech.speak(botReply, textToSpeech.QUEUE_FLUSH,null);
-
             if(!botReply.isEmpty()){
+                textToSpeech.speak(botReply, textToSpeech.QUEUE_FLUSH,null);
                 messageList.add(new Message(botReply, true));
                 chatAdapter.notifyDataSetChanged();
                 chatView.getLayoutManager().scrollToPosition(messageList.size()-1);
@@ -242,7 +235,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         }else{
             Toast.makeText(this, "failed to connect", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
