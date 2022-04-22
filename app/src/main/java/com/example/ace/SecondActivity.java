@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -63,6 +64,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     public static final Integer RecordAudioRequestCode = 1;
     private SpeechRecognizer speechRecognizer;
     private ImageView micButton;
+    final Intent speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +73,12 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         chatView = findViewById(R.id.chatView);
         editMessage = findViewById(R.id.editMessage);
         btnSend = findViewById(R.id.btnSend);
-
-
         chatAdapter = new ChatAdapter(messageList, this);
         chatView.setAdapter(chatAdapter);
+        micButton = findViewById(R.id.imageBtn2);
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
-
+        //tts initial
         textToSpeech = new TextToSpeech(this,
                 new TextToSpeech.OnInitListener() {
                     @Override
@@ -87,15 +89,17 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     }
                 });
 
+        //check the mic is good?
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             checkPermission();
         }
-        micButton = findViewById(R.id.imageBtn2);
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
-        final Intent speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+
+
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
 
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
@@ -145,8 +149,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     Toast.makeText(SecondActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
                 }
 
-                speechRecognizer.startListening(speechRecognizerIntent);
-
             }
 
             @Override
@@ -160,6 +162,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             }
         });
 
+
         micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -170,9 +173,14 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     micButton.setImageResource(R.drawable.ic_mic_black_24dp);
                     speechRecognizer.startListening(speechRecognizerIntent);
                 }
+
                 return false;
             }
         });
+
+
+
+
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
@@ -191,7 +199,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         });
 
         setUpBot();
-        speechRecognizer.startListening(speechRecognizerIntent);
+     //   speechRecognizer.startListening(speechRecognizerIntent);
 
     }
 
@@ -235,6 +243,13 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         }else{
             Toast.makeText(this, "failed to connect", Toast.LENGTH_SHORT).show();
         }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                speechRecognizer.startListening(speechRecognizerIntent);
+            }
+        },5000);
     }
 
     @Override
