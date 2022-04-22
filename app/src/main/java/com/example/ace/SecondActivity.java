@@ -60,6 +60,8 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     private  String uuid = UUID.randomUUID().toString();
     private String TAG = "mainactivity";
 
+    private boolean isMicOn = false;
+
     public static final Integer RecordAudioRequestCode = 1;
     private SpeechRecognizer speechRecognizer;
     private ImageView micButton;
@@ -133,6 +135,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 micButton.setImageResource(R.drawable.ic_mic_black_off);
                 ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 editMessage.setText(data.get(0));
+
                 String message = editMessage.getText().toString();
                 if (!message.isEmpty()){
                     messageList.add(new Message(message,false));
@@ -145,7 +148,8 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     Toast.makeText(SecondActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
                 }
 
-                speechRecognizer.startListening(speechRecognizerIntent);
+                isMicOn = false;
+                turnMicOn(speechRecognizerIntent);
 
             }
 
@@ -168,7 +172,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     micButton.setImageResource(R.drawable.ic_mic_black_24dp);
-                    speechRecognizer.startListening(speechRecognizerIntent);
+                    turnMicOn(speechRecognizerIntent);
                 }
                 return false;
             }
@@ -191,8 +195,16 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         });
 
         setUpBot();
-        speechRecognizer.startListening(speechRecognizerIntent);
+        turnMicOn(speechRecognizerIntent);
 
+    }
+
+    private void turnMicOn(Intent speechRecognizerIntent){
+        if(!isMicOn && !textToSpeech.isSpeaking()) {
+            speechRecognizer.startListening(speechRecognizerIntent);
+            micButton.setImageResource(R.drawable.ic_mic_black_24dp);
+            isMicOn = true;
+        }
     }
 
     private void setUpBot(){
@@ -226,6 +238,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
             if(!botReply.isEmpty()){
                 textToSpeech.speak(botReply, textToSpeech.QUEUE_FLUSH,null);
+
                 messageList.add(new Message(botReply, true));
                 chatAdapter.notifyDataSetChanged();
                 chatView.getLayoutManager().scrollToPosition(messageList.size()-1);
