@@ -133,6 +133,8 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             @Override
             public void onResults(Bundle bundle) {
                 micButton.setImageResource(R.drawable.ic_mic_black_off);
+                isMicOn = false;
+
                 ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 editMessage.setText(data.get(0));
 
@@ -147,9 +149,9 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 }else{
                     Toast.makeText(SecondActivity.this, "Please enter text", Toast.LENGTH_SHORT).show();
                 }
-
-                isMicOn = false;
-                turnMicOn(speechRecognizerIntent);
+                if(!textToSpeech.isSpeaking()){
+                    turnMicOn(speechRecognizerIntent);
+                }
 
             }
 
@@ -200,10 +202,13 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     }
 
     private void turnMicOn(Intent speechRecognizerIntent){
+
         if(!isMicOn && !textToSpeech.isSpeaking()) {
             speechRecognizer.startListening(speechRecognizerIntent);
             micButton.setImageResource(R.drawable.ic_mic_black_24dp);
             isMicOn = true;
+        }else{
+            micButton.setImageResource(R.drawable.ic_mic_black_off);
         }
     }
 
