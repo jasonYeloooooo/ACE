@@ -11,7 +11,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ACE" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.ACE" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_green_1</item>
         <item name="colorPrimaryVariant">@color/dark_green_1</item>
