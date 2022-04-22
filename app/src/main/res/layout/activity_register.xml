@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-         xmlns:app="http://schemas.android.com/apk/res-auto"
-         xmlns:tools="http://schemas.android.com/tools"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         tools:context=".Register"
-         >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F3E3"
+    tools:context=".Register">
 
     <CheckBox
         android:id="@+id/checkbox_user"
@@ -33,7 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/checkbox_stuff"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
         android:text="Confirm" />
 
     <EditText
@@ -41,8 +44,8 @@
         android:id="@+id/register_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="15dp"
         android:gravity="center"
         android:hint="Enter email"
@@ -51,46 +54,45 @@
 
     <EditText
 
-         android:id="@+id/register_firstName"
-         android:gravity="center"
-         android:layout_marginLeft="15dp"
-         android:layout_marginRight="15dp"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:hint="Enter first name"
-         android:layout_centerVertical="true"
-         android:layout_below="@id/register_email"
-         android:textSize="20sp"
-        android:visibility="invisible"
-         />
+        android:id="@+id/register_firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_email"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter first name"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
     <EditText
 
         android:id="@+id/register_LastName"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Last name"
-        android:layout_centerVertical="true"
         android:layout_below="@id/register_firstName"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter Last name"
         android:textSize="20sp"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
+
     <EditText
 
         android:id="@+id/register_phone"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your phone number"
-        android:layout_centerVertical="true"
         android:layout_below="@id/register_LastName"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter your phone number"
         android:textSize="20sp"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
 
     <EditText
@@ -104,42 +106,44 @@
         android:hint="Enter password"
         android:inputType="textPassword"
         android:textSize="20sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/stuff_level"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="EnterAccessLevel"
         android:layout_below="@id/register_password"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="EnterAccessLevel"
         android:textSize="20sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/register_dateOfBirth"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Date fo Birth"
         android:layout_below="@id/register_password"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter Date fo Birth"
         android:textSize="20sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+
     <EditText
         android:id="@+id/register_contactEmail"
-        android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Contact Email"
         android:layout_below="@id/register_dateOfBirth"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:hint="Enter Contact Email"
         android:textSize="20sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
@@ -148,6 +152,6 @@
         android:text="register"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </RelativeLayout>
