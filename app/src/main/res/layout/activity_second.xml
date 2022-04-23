@@ -10,15 +10,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatView"
-        android:layout_width="408dp"
-        android:layout_height="343dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="409dp"
+        android:layout_height="330dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:stackFromEnd="true"
         tools:itemCount="2"
         tools:listitem="@layout/adapter_message_one" />
@@ -28,7 +27,7 @@
         android:layout_width="187dp"
         android:layout_height="167dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="#F9F8FA"
         android:paddingRight="10dp"
         android:src="@drawable/ic_mic_black_off"
@@ -45,10 +44,10 @@
         android:background="@drawable/border_outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageBtn2"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.087">
 
         <ImageButton
             android:id="@+id/btnSend"
@@ -79,36 +78,72 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/ivBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/btnleft" />
 
-    <ImageView
-        android:id="@+id/ivChinese"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/ivBack"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chinese" />
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="411dp"
+        android:layout_height="61dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-5dp">
 
-    <ImageView
-        android:id="@+id/ivEnglish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/ivChinese"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/english"
-        tools:layout_editor_absoluteY="5dp" />
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/btnleft" />
 
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="278dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="84dp"
+            app:srcCompat="@drawable/hhc_300dpi" />
+
+        <ImageView
+            android:id="@+id/ivChinese"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="236dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintStart_toEndOf="@+id/ivBack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/chinese" />
+
+        <ImageView
+            android:id="@+id/ivEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="12dp"
+            app:layout_constraintStart_toEndOf="@+id/ivChinese"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/english"
+            tools:layout_editor_absoluteY="5dp" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:itemBackground="@color/blue"
+        app:itemTextColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.951"
+        app:menu="@menu/menu_navigation"
+        tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

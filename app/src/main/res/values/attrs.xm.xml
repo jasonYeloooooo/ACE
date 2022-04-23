@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="backColor" format="color" />
+    <attr name="backColorPress" format="color" />
+    <attr name="textColor" format="color" />
+    <attr name="textColorPress" format="color" />
+
+    <declare-styleable name="ButtonExtendM">
+        <attr name="backColor"/>
+        <attr name="backColorPress"/>
+        <attr name="textColor"/>
+        <attr name="textColorPress"/>
+        <attr name="iconDrawable" format="reference" />
+        <attr name="iconDrawablePress" format="reference" />
+        <attr name="text" format="string" />
+        <attr name="textSize" format="float" />
+        <attr name="spacing" format="dimension" />
+        <attr name="style">
+            <enum name="iconLeft" value="0" />
+            <enum name="iconRight" value="1" />
+            <enum name="iconUp" value="2" />
+            <enum name="iconBottom" value="3" />
+        </attr>
+    </declare-styleable>
+
+</resources>
