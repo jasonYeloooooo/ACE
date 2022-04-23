@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/border_outline.xml" value="0.139" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.139" />
+        <entry key="app/src/main/res/drawable/circle2.xml" value="0.139" />
         <entry key="app/src/main/res/layout/AndroidManifest.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/activity_first_page.xml" value="0.3333333333333333" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4198989868164062" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17135416666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1518987341772152" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/adapter_message_one.xml" value="0.3333333333333333" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.139" />
       </map>
     </option>
   </component>
