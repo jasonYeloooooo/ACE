@@ -57,6 +57,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     ImageButton btnSend;
     TextToSpeech textToSpeech;
     ImageView btnBack,btnChinese,btnEnglish;
+    String myLanguage= "en_US";
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -119,6 +120,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Toast.makeText(SecondActivity.this,"change to chinese",Toast.LENGTH_SHORT).show();
+                myLanguage= "zh-CN";
                 return false;
             }
         });
@@ -127,6 +129,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Toast.makeText(SecondActivity.this,"change to English",Toast.LENGTH_SHORT).show();
+                myLanguage= "en_US";
                 return false;
             }
         });
@@ -137,7 +140,8 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     @Override
                     public void onInit(int status) {
                         if(status==TextToSpeech.SUCCESS){
-                            int language = textToSpeech.setLanguage(Locale.ENGLISH);
+                            if(myLanguage== "en_US")  {int language = textToSpeech.setLanguage(Locale.ENGLISH);}
+                            if(myLanguage == "zh-CN") {int language = textToSpeech.setLanguage(Locale.CHINESE);}
                         }
                     }
                 });
@@ -150,8 +154,15 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
 
 
 
+//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+       // speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
+      //  speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
 
 
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
