@@ -16,8 +16,10 @@
         <entry key="app/src/main/res/layout/activity_first_page.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2912134806315104" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24604393681393394" />
+        <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/adapter_message_one.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/nav.xml" value="0.2453125" />
         <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.17447916666666666" />

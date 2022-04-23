@@ -11,6 +11,7 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import com.example.ace.adapters.ChatAdapter;
 import com.example.ace.helpers.SendMessageInBg;
 import com.example.ace.interfaces.BotReply;
 import com.example.ace.models.Message;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -81,7 +83,27 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         btnBack = findViewById(R.id.ivBack);
         btnChinese = findViewById(R.id.ivChinese);
         btnEnglish = findViewById(R.id.ivEnglish);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottomMain);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.bottomQuestion:
+                        startActivity(new Intent(SecondActivity.this,QuestionPage.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.bottomMain:
+                        return true;
+                    case R.id.bottomSetting:
+                        startActivity(new Intent(SecondActivity.this,SettingActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
         //touch function on btn Back
         btnBack.setOnTouchListener(new View.OnTouchListener() {
             @Override

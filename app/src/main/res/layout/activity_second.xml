@@ -134,7 +134,7 @@
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomBtn"
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:itemBackground="@color/blue"
