@@ -118,9 +118,32 @@ public class QuestionPage extends AppCompatActivity {
 
     private void sendMessageToBot(String message) {
         QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
-       // new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
+        new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
     }
 
+    @Override
+    public void callback(DetectIntentResponse returnResponse) {
+        if(returnResponse != null){
+            String botReply = returnResponse.getQueryResult().getFulfillmentText();
+            if(!botReply.isEmpty()){
+                textToSpeech.speak(botReply, textToSpeech.QUEUE_FLUSH,null);
+                messageList.add(new Message(botReply, true));
+                chatAdapter.notifyDataSetChanged();
+                chatView.getLayoutManager().scrollToPosition(messageList.size()-1);
+            }else{
+                Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "failed to connect", Toast.LENGTH_SHORT).show();
+        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                speechRecognizer.startListening(speechRecognizerIntent);
+            }
+        },3000);
+    }
 
 
 
