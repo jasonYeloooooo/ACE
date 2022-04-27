@@ -3,6 +3,7 @@ package com.example.ace;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
@@ -12,11 +13,13 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +47,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
 
 public class QuestionPage extends AppCompatActivity implements BotReply {
@@ -53,7 +57,7 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
     EditText editMessage;
     ImageButton btnSend;
     TextToSpeech textToSpeech;
-//    ImageView btnBack,btnChinese,btnEnglish;
+    ImageView btnBack,btnChinese,btnEnglish;
     String myLanguage= "en_US";
     private Button btnStart;
 
@@ -68,6 +72,10 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
     private ImageView micButton;
     final Intent speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
+    private static int i = 0;
+    String question = "askQuestion";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,12 +86,52 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
         chatAdapter = new ChatAdapter(messageList, this);
         chatView.setAdapter(chatAdapter);
         micButton = findViewById(R.id.btnQuestionMic);
-
+        btnBack = findViewById(R.id.ivBackQuestion);
+        btnChinese = findViewById(R.id.ivChineseQuestion);
+        btnEnglish = findViewById(R.id.ivEnglishQuestion);
+        editMessage = findViewById(R.id.etQuestion);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendMessageToBot("askQuestion");
+            }
+        });
+
+        //touch function on btn Back
+        btnBack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Intent intent=new Intent(QuestionPage.this, SecondActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        //change the language (not done)
+        btnChinese.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Toast.makeText(QuestionPage.this,"change to chinese",Toast.LENGTH_SHORT).show();
+                myLanguage= "zh-CN";
+                int language = textToSpeech.setLanguage(Locale.CHINESE);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
+                return false;
+            }
+        });
+        //change to EN (not done)
+        btnEnglish.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Toast.makeText(QuestionPage.this,"change to English",Toast.LENGTH_SHORT).show();
+                myLanguage= "en_US";
+                textToSpeech.setLanguage(Locale.ENGLISH);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
+                return false;
             }
         });
 
@@ -97,10 +145,14 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
                     case R.id.bottomQuestion:
                         return true;
                     case R.id.bottomMain:
+                        textToSpeech.stop();
+                        speechRecognizer.destroy();
                         startActivity(new Intent(QuestionPage.this,SecondActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.bottomSetting:
+                        textToSpeech.stop();
+                        speechRecognizer.destroy();
                         startActivity(new Intent(QuestionPage.this,SettingActivity.class));
                         overridePendingTransition(0,0);
                         return true;
@@ -120,6 +172,97 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
                         }
                     }
                 });
+        //check the mic is good?
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+            checkPermission();
+        }
+
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        // speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
+        //  speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+                editMessage.setText("");
+            }
+
+            @Override
+            public void onRmsChanged(float v) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] bytes) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+                micButton.setImageResource(R.drawable.ic_mic_black_off);
+            }
+
+            @Override
+            public void onError(int i) {
+
+            }
+
+            @Override
+            public void onResults(Bundle bundle) {
+                micButton.setImageResource(R.drawable.ic_mic_black_off);
+                ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                editMessage.setText(data.get(0));
+                String message = editMessage.getText().toString();
+                if (!message.isEmpty()){
+                    messageList.add(new Message(message,false));
+                    editMessage.setText("");
+                    //
+                    sendMessageToBot(question+i);
+                    Objects.requireNonNull(chatView.getAdapter()).notifyDataSetChanged();
+                    Objects.requireNonNull(chatView.getLayoutManager())
+                            .scrollToPosition(messageList.size()-1);
+                    //ask another question
+                }else{
+                    Toast.makeText(QuestionPage.this, "Please enter text", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onPartialResults(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onEvent(int i, Bundle bundle) {
+
+            }
+        });
+
+//        micButton.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+//                    speechRecognizer.stopListening();
+//                }
+//                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+//                    micButton.setImageResource(R.drawable.ic_mic_black_24dp);
+//                    speechRecognizer.startListening(speechRecognizerIntent);
+//                }
+//
+//                return false;
+//            }
+//        });
 
 
         setUpBot();
@@ -165,13 +308,15 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
         }else{
             Toast.makeText(this, "failed to connect", Toast.LENGTH_SHORT).show();
         }
-       // Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                speechRecognizer.startListening(speechRecognizerIntent);
-//            }
-//        },3000);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                speechRecognizer.startListening(speechRecognizerIntent);
+            }
+        },3000);
+        i++;
+
     }
 
 

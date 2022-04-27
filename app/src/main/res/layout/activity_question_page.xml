@@ -7,14 +7,6 @@
     tools:context=".QuestionPage">
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="-8dp"
-        app:srcCompat="@drawable/hhc_300dpi" />
-
-    <ImageView
         android:id="@+id/btnQuestionMic"
         android:layout_width="162dp"
         android:layout_height="142dp"
@@ -45,8 +37,8 @@
         android:id="@+id/chatViewQuestion"
         android:layout_width="match_parent"
         android:layout_height="262dp"
-        android:layout_below="@+id/imageView4"
-        android:layout_marginTop="-2dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="3dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,13 +50,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="385dp"
-        android:layout_height="61dp"
-        android:layout_above="@+id/bottomNavigation"
+        android:layout_width="384dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/btnQuestionStart"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="7dp"
         android:background="@drawable/border_outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,6 +103,60 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="170dp"
         android:text="Start" />
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="411dp"
+        android:layout_height="61dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-5dp">
+
+        <ImageView
+            android:id="@+id/ivBackQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/btnleft" />
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="278dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="84dp"
+            app:srcCompat="@drawable/hhc_300dpi" />
+
+        <ImageView
+            android:id="@+id/ivChineseQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="236dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintStart_toEndOf="@+id/ivBackQuestion"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/chinese" />
+
+        <ImageView
+            android:id="@+id/ivEnglishQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="12dp"
+            app:layout_constraintStart_toEndOf="@+id/ivChineseQuestion"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/english"
+            tools:layout_editor_absoluteY="5dp" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

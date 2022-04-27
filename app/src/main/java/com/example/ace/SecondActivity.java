@@ -93,12 +93,16 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.bottomQuestion:
+                        textToSpeech.stop();
+                        speechRecognizer.destroy();
                         startActivity(new Intent(SecondActivity.this,QuestionPage.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.bottomMain:
                         return true;
                     case R.id.bottomSetting:
+                        textToSpeech.stop();
+                        speechRecognizer.destroy();
                         startActivity(new Intent(SecondActivity.this,SettingActivity.class));
                         overridePendingTransition(0,0);
                         return true;
@@ -116,7 +120,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             }
         });
 
-        //change the language (not done)
+        //change the language
         btnChinese.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -129,7 +133,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 return false;
             }
         });
-        //change to EN (not done)
+        //change to EN
         btnEnglish.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
