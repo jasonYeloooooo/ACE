@@ -57,7 +57,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     ImageButton btnSend;
     TextToSpeech textToSpeech;
     ImageView btnBack,btnChinese,btnEnglish;
-    String myLanguage= "en_US";
+    public static String myLanguage= "en_US";
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -301,7 +301,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     }
 
     private void sendMessageToBot(String message) {
-        QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
+        QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode(myLanguage)).build();
         new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
     }
 

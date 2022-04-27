@@ -82,13 +82,13 @@ public class Register extends AppCompatActivity {
 
 
     private void signup(){
-           String emailStr = email.getText().toString();
-           String fName = firstName.getText().toString();
-           String lName = lastName.getText().toString();
-           String cEmail = contactEmail.getText().toString();
-           String dob = DOB.getText().toString();
-           String number = phoneNumber.getText().toString();
-           String passwordStr = password.getText().toString();
+           String emailStr = email.getText().toString().trim();
+           String fName = firstName.getText().toString().trim();
+           String lName = lastName.getText().toString().trim();
+           String cEmail = contactEmail.getText().toString().trim();
+           String dob = DOB.getText().toString().trim();
+           String number = phoneNumber.getText().toString().trim();
+           String passwordStr = password.getText().toString().trim();
 
         // Validations for input email and password
         if (TextUtils.isEmpty(emailStr)) {

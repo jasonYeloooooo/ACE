@@ -45,8 +45,8 @@ public class Login extends AppCompatActivity {
 
     private void loginUserAccount(){
         String email, password;
-        email = emailEd.getText().toString();
-        password = passwordEd.getText().toString();
+        email = emailEd.getText().toString().trim();
+        password = passwordEd.getText().toString().trim();
 
         // validations for input email and password
         if (TextUtils.isEmpty(email)) {

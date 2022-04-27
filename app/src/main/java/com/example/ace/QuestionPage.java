@@ -43,6 +43,7 @@ import com.google.cloud.dialogflow.v2.SessionsSettings;
 import com.google.cloud.dialogflow.v2.TextInput;
 import com.google.common.collect.Lists;
 
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -289,7 +290,7 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
     }
 
     private void sendMessageToBot(String message) {
-        QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode("en-US")).build();
+        QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode(myLanguage)).build();
         new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
     }
 
