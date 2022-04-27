@@ -80,6 +80,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         chatAdapter = new ChatAdapter(messageList, this);
         chatView.setAdapter(chatAdapter);
         micButton = findViewById(R.id.imageBtn2);
+
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         btnBack = findViewById(R.id.ivBack);
         btnChinese = findViewById(R.id.ivChinese);
@@ -313,7 +314,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             public void run() {
                 speechRecognizer.startListening(speechRecognizerIntent);
             }
-        },5000);
+        },3000);
     }
 
     @Override
