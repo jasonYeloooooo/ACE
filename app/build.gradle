@@ -8,8 +8,9 @@ android {
 
     defaultConfig {
         applicationId "com.example.ace"
-        minSdk 30
         targetSdk 32
+        /*minSdk 30*/
+        minSdk 29
         versionCode 1
         versionName "1.0"
 

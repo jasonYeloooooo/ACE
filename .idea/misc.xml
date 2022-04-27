@@ -3,33 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/bg_chat_receive.xml" value="0.251" />
-        <entry key="app/src/main/res/drawable/bg_chat_send.xml" value="0.139" />
-        <entry key="app/src/main/res/drawable/border_outline.xml" value="0.139" />
-        <entry key="app/src/main/res/drawable/circle.xml" value="0.139" />
-        <entry key="app/src/main/res/drawable/circle2.xml" value="0.139" />
-        <entry key="app/src/main/res/drawable/ic_baseline_dashboard_24.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_setting_background.xml" value="0.1705" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ACE/app/src/main/res/layout/activity_first_page.xml" value="0.36231884057971014" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ACE/app/src/main/res/layout/activity_login.xml" value="0.36231884057971014" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ACE/app/src/main/res/layout/activity_question_page.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ACE/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ACE/app/src/main/res/layout/activity_setting.xml" value="0.36231884057971014" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ACE/app/src/main/res/layout/adapter_message_one.xml" value="0.36231884057971014" />
         <entry key="app/src/main/res/layout/AndroidManifest.xml" value="0.31875" />
-        <entry key="app/src/main/res/layout/activity_button_extend_m.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/activity_first_page.xml" value="0.3333333333333333" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2912134806315104" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24604393681393394" />
-        <entry key="app/src/main/res/layout/activity_question_page.xml" value="0.21314544677734376" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.17135416666666667" />
-        <entry key="app/src/main/res/layout/activity_second.xml" value="0.30863342285156253" />
-        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/adapter_message_one.xml" value="0.3333333333333333" />
-        <entry key="app/src/main/res/layout/nav.xml" value="0.2453125" />
-        <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.17447916666666666" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.139" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_setting.xml" value="0.1" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_setting_round.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
