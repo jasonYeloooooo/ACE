@@ -17,6 +17,8 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.ace.adapters.ChatAdapter;
 import com.example.ace.helpers.SendMessageInBg;
+import com.example.ace.interfaces.BotReply;
 import com.example.ace.models.Message;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.api.gax.core.FixedCredentialsProvider;
@@ -40,17 +43,19 @@ import com.google.common.collect.Lists;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
-public class QuestionPage extends AppCompatActivity {
+public class QuestionPage extends AppCompatActivity implements BotReply {
     RecyclerView chatView;
     ChatAdapter chatAdapter;
     List<Message> messageList = new ArrayList<>();
     EditText editMessage;
     ImageButton btnSend;
     TextToSpeech textToSpeech;
-    ImageView btnBack,btnChinese,btnEnglish;
+//    ImageView btnBack,btnChinese,btnEnglish;
     String myLanguage= "en_US";
+    private Button btnStart;
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -69,6 +74,18 @@ public class QuestionPage extends AppCompatActivity {
         setContentView(R.layout.activity_question_page);
 
         chatView  = findViewById(R.id.chatViewQuestion);
+        btnStart = findViewById(R.id.btnQuestionStart);
+        chatAdapter = new ChatAdapter(messageList, this);
+        chatView.setAdapter(chatAdapter);
+        micButton = findViewById(R.id.btnQuestionMic);
+
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessageToBot("askQuestion");
+            }
+        });
 
         //bottom navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -91,6 +108,18 @@ public class QuestionPage extends AppCompatActivity {
                 return false;
             }
         });
+
+        //tts initial
+        textToSpeech = new TextToSpeech(this,
+                new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if(status==TextToSpeech.SUCCESS){
+                            if(myLanguage== "en_US")  {int language = textToSpeech.setLanguage(Locale.ENGLISH);}
+                            if(myLanguage == "zh-CN") {int language = textToSpeech.setLanguage(Locale.CHINESE);}
+                        }
+                    }
+                });
 
 
         setUpBot();
@@ -136,13 +165,13 @@ public class QuestionPage extends AppCompatActivity {
         }else{
             Toast.makeText(this, "failed to connect", Toast.LENGTH_SHORT).show();
         }
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                speechRecognizer.startListening(speechRecognizerIntent);
-            }
-        },3000);
+       // Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                speechRecognizer.startListening(speechRecognizerIntent);
+//            }
+//        },3000);
     }
 
 

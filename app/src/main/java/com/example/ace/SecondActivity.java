@@ -122,6 +122,10 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Toast.makeText(SecondActivity.this,"change to chinese",Toast.LENGTH_SHORT).show();
                 myLanguage= "zh-CN";
+                int language = textToSpeech.setLanguage(Locale.CHINESE);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
                 return false;
             }
         });
@@ -131,6 +135,10 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Toast.makeText(SecondActivity.this,"change to English",Toast.LENGTH_SHORT).show();
                 myLanguage= "en_US";
+                textToSpeech.setLanguage(Locale.ENGLISH);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
+                speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
                 return false;
             }
         });
@@ -141,7 +149,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                     @Override
                     public void onInit(int status) {
                         if(status==TextToSpeech.SUCCESS){
-                            if(myLanguage== "en_US")  {int language = textToSpeech.setLanguage(Locale.ENGLISH);}
+                            if(myLanguage == "en_US")  {int language = textToSpeech.setLanguage(Locale.ENGLISH);}
                             if(myLanguage == "zh-CN") {int language = textToSpeech.setLanguage(Locale.CHINESE);}
                         }
                     }
@@ -189,7 +197,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
 
             @Override
             public void onEndOfSpeech() {
-
+                micButton.setImageResource(R.drawable.ic_mic_black_off);
             }
 
             @Override
@@ -313,6 +321,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             @Override
             public void run() {
                 speechRecognizer.startListening(speechRecognizerIntent);
+                micButton.setImageResource(R.drawable.ic_mic_black_24dp);
             }
         },3000);
     }

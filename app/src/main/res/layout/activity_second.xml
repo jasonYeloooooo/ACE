@@ -10,8 +10,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatView"
-        android:layout_width="409dp"
-        android:layout_height="330dp"
+        android:layout_width="416dp"
+        android:layout_height="302dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,16 +22,18 @@
         tools:itemCount="2"
         tools:listitem="@layout/adapter_message_one" />
 
+
     <ImageView
         android:id="@+id/imageBtn2"
         android:layout_width="187dp"
         android:layout_height="167dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#F9F8FA"
         android:paddingRight="10dp"
         android:src="@drawable/ic_mic_black_off"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chatView"
         tools:ignore="MissingConstraints" />
@@ -41,13 +43,14 @@
         android:layout_width="385dp"
         android:layout_height="61dp"
         android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/border_outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageBtn2"
-        app:layout_constraintVertical_bias="0.087">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
             android:id="@+id/btnSend"
@@ -70,14 +73,13 @@
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnSend"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47" />
+            app:layout_constraintVertical_bias="0.764" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <RelativeLayout
         android:id="@+id/linearLayout"

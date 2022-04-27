@@ -11,19 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="-8dp"
         app:srcCompat="@drawable/hhc_300dpi" />
 
     <ImageView
         android:id="@+id/btnQuestionMic"
         android:layout_width="162dp"
         android:layout_height="142dp"
-        android:layout_above="@+id/constraintLayout"
+        android:layout_below="@+id/chatViewQuestion"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="125dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="132dp"
         app:srcCompat="@drawable/ic_mic_black_off"
         tools:layout_editor_absoluteX="90dp"
         tools:layout_editor_absoluteY="155dp" />
@@ -44,9 +44,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatViewQuestion"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_above="@+id/btnQuestionMic"
-        android:layout_marginBottom="49dp"
+        android:layout_height="262dp"
+        android:layout_below="@+id/imageView4"
+        android:layout_marginTop="-2dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,6 +101,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/btnQuestionStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnQuestionMic"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="170dp"
+        android:text="Start" />
 
 
 </RelativeLayout>
