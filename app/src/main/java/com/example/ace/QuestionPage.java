@@ -61,6 +61,7 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
     ImageView btnBack,btnChinese,btnEnglish;
     String myLanguage= "en_US";
     private Button btnStart;
+    public boolean isMicOn = false;
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -266,6 +267,20 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
 //            }
 //        });
 
+        micButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isMicOn = !isMicOn;
+                if (isMicOn){
+                    micButton.setImageResource(R.drawable.ic_mic_black_24dp);
+                    speechRecognizer.startListening(speechRecognizerIntent);
+
+                }else{
+                    speechRecognizer.stopListening();
+                    micButton.setImageResource(R.drawable.ic_mic_black_off);
+                }
+            }
+        });
 
         setUpBot();
     }

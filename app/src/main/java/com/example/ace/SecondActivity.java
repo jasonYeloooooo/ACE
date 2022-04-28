@@ -250,6 +250,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             }
         });
 
+/*
 
         micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -266,6 +267,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 return false;
             }
         });
+*/
 
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -285,8 +287,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         });
 
         setUpBot();
-
-
     }
 
     private void setUpBot(){
