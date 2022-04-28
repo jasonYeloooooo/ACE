@@ -254,6 +254,7 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
 //            @Override
 //            public boolean onTouch(View view, MotionEvent motionEvent) {
 //                if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+//                    micButton.setImageResource(R.drawable.ic_mic_black_off);
 //                    speechRecognizer.stopListening();
 //                }
 //                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
@@ -319,9 +320,6 @@ public class QuestionPage extends AppCompatActivity implements BotReply {
         i++;
 
     }
-
-
-
 
     @Override
     protected void onDestroy() {

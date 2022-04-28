@@ -5,6 +5,8 @@ import android.util.Log;
 import com.example.ace.interfaces.BotReply;
 import com.google.cloud.dialogflow.v2.DetectIntentRequest;
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
+import com.google.cloud.dialogflow.v2.AgentsSettings;
+import com.google.cloud.dialogflow.v2.Agent;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
@@ -26,12 +28,13 @@ public class SendMessageInBg extends AsyncTask<Void, Void, DetectIntentResponse>
         this.sessionsClient = sessionsClient;
         this.queryInput = queryInput;
 
+
       // onPostExecute(DetectIntentResponse());
 
     }
 
     @Override
-    protected DetectIntentResponse /*DetectIntentResponse()*/ doInBackground(Void... voids) {
+    protected DetectIntentResponse doInBackground(Void... voids) {
         try {
             DetectIntentRequest detectIntentRequest =
                     DetectIntentRequest.newBuilder()
@@ -53,6 +56,7 @@ public class SendMessageInBg extends AsyncTask<Void, Void, DetectIntentResponse>
     @Override
     protected void onPostExecute(DetectIntentResponse  response) {
         //handle return response here
+
         botReply.callback(response);
     }
 }

@@ -58,6 +58,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
     TextToSpeech textToSpeech;
     ImageView btnBack,btnChinese,btnEnglish;
     public static String myLanguage= "en_US";
+    public boolean isMicOn = false;
 
     //dialogFlow
     private SessionsClient sessionsClient;
@@ -130,6 +131,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
                 speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
                 speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
+
                 return false;
             }
         });
@@ -163,12 +165,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             checkPermission();
         }
-
-
-
-
-//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
        // speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,"voice.recognition.test");
@@ -239,12 +235,28 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             }
         });
 
+        micButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isMicOn = !isMicOn;
+                if (isMicOn){
+                    micButton.setImageResource(R.drawable.ic_mic_black_24dp);
+                    speechRecognizer.startListening(speechRecognizerIntent);
+
+                }else{
+                    speechRecognizer.stopListening();
+                    micButton.setImageResource(R.drawable.ic_mic_black_off);
+                }
+            }
+        });
+
 
         micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP){
                     speechRecognizer.stopListening();
+                    micButton.setImageResource(R.drawable.ic_mic_black_off);
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     micButton.setImageResource(R.drawable.ic_mic_black_24dp);
@@ -254,9 +266,6 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
                 return false;
             }
         });
-
-
-
 
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -276,7 +285,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
         });
 
         setUpBot();
-     //   speechRecognizer.startListening(speechRecognizerIntent);
+
 
     }
 
@@ -290,6 +299,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
             SessionsSettings.Builder settingsBuilder = SessionsSettings.newBuilder();
             SessionsSettings sessionsSettings = settingsBuilder.setCredentialsProvider(
                     FixedCredentialsProvider.create(credentials)).build();
+
             sessionsClient = SessionsClient.create(sessionsSettings);
             sessionName = SessionName.of(projectId, uuid);
 
@@ -302,6 +312,7 @@ public class SecondActivity extends AppCompatActivity implements BotReply {
 
     private void sendMessageToBot(String message) {
         QueryInput input = QueryInput.newBuilder().setText(TextInput.newBuilder().setText(message).setLanguageCode(myLanguage)).build();
+
         new SendMessageInBg(this, sessionName, sessionsClient, input).execute();
     }
 
